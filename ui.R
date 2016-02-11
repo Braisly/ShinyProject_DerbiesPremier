@@ -20,27 +20,46 @@ shinyUI(
     useShinyjs(),
     includeCSS("./www/css/sCustomization.css"),
     
-    #Menú de navegación
-    navbarPage("SciDB-R Project",theme = shinytheme("cerulean"),
+    #Navigation Menu
+    navbarPage("Derbies Premier League",theme = shinytheme("cerulean"),
            
-           #Sección Inicio     
-           tabPanel("Inicio", includeHTML("./views/inicio.html")),
-           
+           #Start Section     
+           tabPanel("Start", includeHTML("./views/inicio.html")),
            #Sección Gráficos, con submenús     
-           navbarMenu("Gráficos",
+           navbarMenu("Statistics",
                       
-                      ),#Cierre Gráficos
-               
-           #Sección Datos estadísticos, con submenús     
-           navbarMenu("Datos estadísticos",
+                      #Subsección Mapa Global
+                      tabPanel("Seasons", sidebarLayout(
+                        sidebarPanel( #Panel lateral con el input fecha
+                          dateInput("dateMaps","Fecha: ",value=NULL,min="1500-01-01",max="2500-12-31",format = "yyyy-mm",startview="year",language="es"),
+                          includeHTML("./views/sidebar.html")
+                        ),
+                        mainPanel(  #Panel central, inclusión de la descripción y mapa
+                          includeHTML("./views/gMapaGlobal.html"),
+                          div(id="divMap",imageOutput("map"))
+                        )
+                      )
+                      ),#Cierre Mapa Global
                       
-                      #Subsección Tendencias
-                    
-                  ),#Cierre Datos estadísticos
+                      #Subsección Otros
+                      tabPanel("Average", sidebarLayout(
+                        sidebarPanel( #Panel lateral con los sliders selectores de años
+                          sliderInput("siYear1","Año 1:",min=1854,max=2500,value=1900),
+                          sliderInput("siYear2","Año 2:",min=1854,max=2500,value=2000),
+                          includeHTML("./views/sidebar.html")
+                        ),
+                        mainPanel(  #Panel central, inclusión de la descripción y el gráfico
+                          includeHTML("./views/gOtros.html")
+                          #dygraphOutput('dgMeanSeasonal')
+                        )
+                      )
+                      )#Cierre Otros
+           ),#Cierre Gráficos
+
                
-               #Seccion Ayuda
-               tabPanel("Ayuda", includeHTML("./views/ayuda.html"))
+           #Help Section
+           tabPanel("Help", includeHTML("./views/ayuda.html"))
                
-          )#Cierre Menú         
-    )#Cierre taglist
-)#Cierre UI
+          )#Closed Menu         
+    )#Closed taglist
+)#Closed UI
