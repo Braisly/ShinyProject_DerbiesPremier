@@ -1,0 +1,39 @@
+/***************************************************************************************************************************************
+TÍTULO: sCustomization.css
+
+DESCRIPCIÓN: Personalización de elementos para adaptar los objetos al estilo de la página y facilitar la interacción con el usuario.
+
+AUTOR: Brais López Yáñez
+***************************************************************************************************************************************/
+
+
+/*Personalización de botones*/
+#bPastTemperatures{color: #1579B5;}
+
+
+/*Personalización de botones*/
+#bCalculatedTemperatures{
+                         margin:10px 0px 10px 0px;
+                         color:#1579B5;
+                         }
+   
+   
+/*Personalización de la barra de progreso*/
+.shiny-progress .bar {
+                      background-color: #FF0000;
+                      .opacity = 0.8;
+}
+.shiny-progress .progress {
+                            height:7px;
+}
+
+.shiny-datatable-output {
+  overflow:auto;
+}
+
+
+/*Personalización del mapa para que se ajuste a la pantalla*/
+#divMap {
+  overflow-x:auto;
+  height:650px;
+}
