@@ -1,9 +1,7 @@
 #**********************************************************************************************************************************************************
 #TÍTULO: server.R
 #
-#DESCRIPCIÓN: Archivo encargado de llevar a cabo la lógica de negocio, se realizan las llamadas a los otros archivos que tienen implementada la funcionalidad.  
-#
-#AUTOR: Brais López Yáñez
+#AUTHOR: Brais López Yáñez
 #***********************************************************************************************************************************************************
 
 
@@ -13,12 +11,22 @@ library("shiny")
 library("shinyjs")
 #Biblioteca para la creación de gráficos interactivos
 library("dygraphs")
-
+#Archivos que contienen las funciones necesarias para realizar las operaciones, modelos (lógia de negocio)
+source("./models/functions.R")
 
 
 function(input, output,session) 
 { 
-
+  year <- reactive(input$Season)
+  
+  
+  #output<-year
+  
+  
+  #Generate Season Data
+  output$ResultsDerbiesSeason <- renderDataTable({
+    DataSeason(year())
+  })
  
                                       
 }

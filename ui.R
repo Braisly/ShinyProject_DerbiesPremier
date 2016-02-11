@@ -7,17 +7,13 @@
 
 #Biblioteca de Shiny 
 library("shiny")
-#Biblioteca shinyjs, con funciones JavaScript
-library("shinyjs")
-#Biblioteca que carga themes de Bootstrap
+#Themes Bootstrap
 library("shinythemes")
-#Biblioteca para la creación de gráficos interactivos
-library("dygraphs")
+
 
 
 shinyUI(
   tagList(
-    useShinyjs(),
     includeCSS("./www/css/sCustomization.css"),
     
     #Navigation Menu
@@ -31,32 +27,20 @@ shinyUI(
                       #Subsección Mapa Global
                       tabPanel("Seasons", sidebarLayout(
                         sidebarPanel( #Panel lateral con el input fecha
-                          dateInput("dateMaps","Fecha: ",value=NULL,min="1500-01-01",max="2500-12-31",format = "yyyy-mm",startview="year",language="es"),
+                          selectInput("Season", label = h3("Select Season"), 
+                                      choices = list("2013" = 2013, "2014" = 2014, "2015" = 2015), 
+                                      selected = 1),
                           includeHTML("./views/sidebar.html")
                         ),
                         mainPanel(  #Panel central, inclusión de la descripción y mapa
                           includeHTML("./views/gMapaGlobal.html"),
-                          div(id="divMap",imageOutput("map"))
+                          (dataTableOutput('ResultsDerbiesSeason'))
                         )
                       )
-                      ),#Cierre Mapa Global
-                      
-                      #Subsección Otros
-                      tabPanel("Average", sidebarLayout(
-                        sidebarPanel( #Panel lateral con los sliders selectores de años
-                          sliderInput("siYear1","Año 1:",min=1854,max=2500,value=1900),
-                          sliderInput("siYear2","Año 2:",min=1854,max=2500,value=2000),
-                          includeHTML("./views/sidebar.html")
-                        ),
-                        mainPanel(  #Panel central, inclusión de la descripción y el gráfico
-                          includeHTML("./views/gOtros.html")
-                          #dygraphOutput('dgMeanSeasonal')
-                        )
-                      )
-                      )#Cierre Otros
-           ),#Cierre Gráficos
-
-               
+                      )#Closed Seasons
+              
+           ),#Closed Statistics
+           
            #Help Section
            tabPanel("Help", includeHTML("./views/ayuda.html"))
                
