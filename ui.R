@@ -20,7 +20,7 @@ shinyUI(
     navbarPage("Derbies Premier League",theme = shinytheme("cerulean"),
            
            #Start Section     
-           tabPanel("Start", includeHTML("./views/inicio.html")),
+           tabPanel("Start", includeHTML("./views/start.html")),
            #Sección Gráficos, con submenús     
            navbarMenu("Statistics",
                       
@@ -33,7 +33,7 @@ shinyUI(
                           includeHTML("./views/sidebar.html")
                         ),
                         mainPanel(  #Panel central, inclusión de la descripción y mapa
-                          includeHTML("./views/gMapaGlobal.html"),
+                          includeHTML("./views/statistics.html"),
                           (dataTableOutput('ResultsDerbiesSeason'))
                         )
                       )
@@ -42,7 +42,7 @@ shinyUI(
            ),#Closed Statistics
            
            #Help Section
-           tabPanel("Help", includeHTML("./views/ayuda.html"))
+           tabPanel("Help", includeHTML("./views/help.html"))
                
           )#Closed Menu         
     )#Closed taglist
