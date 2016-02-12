@@ -17,16 +17,20 @@ source("./models/functions.R")
 
 function(input, output,session) 
 { 
-  year <- reactive(input$Season)
-  
-  
-  #output<-year
-  
+  year <- reactive(as.numeric(input$Season))
+  team <- 'Arsenal'
   
   #Generate Season Data
   output$ResultsDerbiesSeason <- renderDataTable({
-    DataSeason(year())
-  })
+    DataSeason(year())},
+  options = list(rowCallback = I(
+    'function(row,data,table) {
+          if((data[0]-1)%3==0 | data[0] == 1)
+            $("td", row).css("background", "yellow");
+      }'
+  ))
+  )
+  
  
                                       
 }
