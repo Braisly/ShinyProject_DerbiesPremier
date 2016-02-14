@@ -2,6 +2,6 @@ name: 4-ShinyProject
 account: blytest
 server: shinyapps.io
 appId: 83217
-bundleId: 371495
+bundleId: 372701
 url: https://blytest.shinyapps.io/4-ShinyProject/
-when: 1455275494.0133
+when: 1455475820.54928
