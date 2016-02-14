@@ -18,7 +18,6 @@ source("./models/functions.R")
 function(input, output,session) 
 { 
   year <- reactive(as.numeric(input$Season))
-  team <- 'Arsenal'
   
   #Generate Season Data
   output$ResultsDerbiesSeason <- renderDataTable({
