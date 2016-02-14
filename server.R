@@ -19,9 +19,22 @@ function(input, output,session)
 { 
   year <- reactive(as.numeric(input$Season))
   
+  
+  
+  output$victory <- renderPrint({ 
+    cat(calculateStatistics(input$derbyTeam)[1])          
+    })
+  output$draw <- renderPrint({ 
+    cat(calculateStatistics(input$derbyTeam)[2])          
+  })
+  output$defeat <- renderPrint({ 
+    cat(calculateStatistics(input$derbyTeam)[3])          
+  })
+  
+  
   #Generate Season Data
   output$ResultsDerbiesSeason <- renderDataTable({
-    DataSeason(year())},
+    dataSeason(year())},
   options = list(rowCallback = I(
     'function(row,data,table) {
           if((data[0]-1)%3==0 | data[0] == 1)

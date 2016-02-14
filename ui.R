@@ -21,10 +21,10 @@ shinyUI(
            
            #Start Section     
            tabPanel("Start", includeHTML("./views/start.html")),
-           #Sección Gráficos, con submenús     
+           #Section Statistics     
            navbarMenu("Statistics",
                       
-                      #Subsección Mapa Global
+                      #Subsection Seasons
                       tabPanel("Seasons", sidebarLayout(
                         sidebarPanel( #Panel lateral con el input fecha
                           selectInput("Season", label = h3("Select Season"), 
@@ -32,12 +32,31 @@ shinyUI(
                                       selected = 1),
                           includeHTML("./views/sidebar.html")
                         ),
-                        mainPanel(  #Panel central, inclusión de la descripción y mapa
+                        mainPanel(  #Central panel
                           includeHTML("./views/statistics.html"),
                           (dataTableOutput('ResultsDerbiesSeason'))
                         )
                       )
-                      )#Closed Seasons
+                      ),#Closed Seasons
+					  
+					  
+					  #Subsection Percentages
+                      tabPanel("Percentages", sidebarLayout(
+                        sidebarPanel( #Panel lateral con el input fecha
+                          radioButtons("derbyTeam", label = h3("Derby Team"),
+                                       choices = list("Home Team" = 1, "Away Team" = 2), 
+                                       selected = 1),
+                          includeHTML("./views/sidebar.html")
+                        ),
+                        mainPanel(  #Central panel
+                          includeHTML("./views/percentages.html"),
+                          p(strong("Victory: "), textOutput("victory")),
+                          p(strong("Draw: "), textOutput("draw")),
+                          p(strong("Defeat: "), textOutput("defeat"))
+
+                        )
+                      )
+                      )#Closed Percentages
               
            ),#Closed Statistics
            
